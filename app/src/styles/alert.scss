@@ -1,0 +1,48 @@
+@import 'variables';
+//alert container style
+.alert{
+    width: 100%;
+    height: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2rem 1rem;
+    gap: 1rem;
+    border: 1px solid $text-accent;
+    border-radius: 0.2rem;
+    background-color: $bg-main;
+    color: white;
+    font-weight: 600;
+    .alert-icon{
+        color: red;
+        font-size: 4rem;
+        @media screen and (min-width: $breakpoint-sm) {
+            font-size: 2rem;
+        }
+    }
+}
+//style for main container with all alerts
+.alert-stack{
+    width: 90%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    pointer-events: none;
+    @media screen and (min-width: $breakpoint-lg) {
+        width: 30%;
+    }
+}
+
+//position of alerts' stack inside the stack container
+.alert-element{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
+}

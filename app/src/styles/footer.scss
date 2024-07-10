@@ -1,0 +1,170 @@
+@import 'variables';
+//FOOTER VARIABLES
+$border-dark: #0a0b0e;
+$footer-gray: #2a2c34;
+$bg-footer: #15161a;
+
+footer{
+    position: relative;
+    width: 100%;
+}
+//footer grid with elements inside excluding the absolute expandable container
+.main-footer-content{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0rem 1rem;    
+    z-index: 2;
+    border-top: 2px solid $border-dark;
+    background-color: $bg-footer;
+    //all children take full grid column width
+    > * {
+        width: 100%;
+    }
+    @media screen and (min-width: $breakpoint-sm) {
+        grid-template-columns: repeat(3, 1fr);
+        padding: 0.5rem 2rem;    
+    }
+    @media screen and (min-width: $breakpoint-lg) {
+        padding: 0rem 2rem;    
+    }
+}
+//div with css is awesome text and animated border
+.css-logo-container{
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    div{
+        position: absolute;
+        height: 5rem;
+        width: 5rem;
+        border: 1px solid $footer-gray;
+        transition: border-color 0.3s ease;
+    }
+    p{
+        margin-left: 0.4rem;
+        color: $footer-gray;
+        font-weight: 500;
+        font-size: 1.2rem;
+        transition: color 0.3s ease;
+    }
+    &:hover{
+        p{
+            color: $text-accent;
+        }
+        div{
+            border: 1px solid $accent-color;
+            animation: rotate360 1s ease-in-out;
+        }
+    }
+}
+//div with company name and horizontal line in the footer
+.horizontal-line-container{
+    display: none;
+    div{
+        width: 10rem;   
+        display: flex;
+        align-items: center;
+        span{
+            height: 1px;
+            flex-grow: 1;
+            background-color: $footer-gray;
+        }
+        p{
+            flex-grow: 0;
+            margin: 0 0.2rem;
+            color: $footer-gray;
+            font-weight: 600;
+        } 
+    }
+    @media screen and (min-width: $breakpoint-sm) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+//div with button to show the expandable container and reset state
+.button-container{
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    button{
+        width: 12rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.6rem 0;
+        background: none;
+        border: 1px solid $footer-gray;
+        border-radius: 0.2rem;
+        color: $text-accent;
+        font-weight: 700;
+        font-size: 0.7rem;
+        .icon{
+            font-size: 0.7rem;
+        }
+        &:focus{
+            border-color: white;
+            color: white;
+        }
+    }
+}
+//expandable container 
+.options-container{
+    position: absolute;
+    width: 12rem;
+    height: max-content;
+    z-index: 1;
+    bottom: 10%;
+    right: 1rem;
+    padding: 0.8rem 0rem;
+    background-color: white;
+    border-radius: 0.1rem 0.1rem 0rem 0rem;
+    box-shadow: rgba(0, 0, 0, 0.3) 0 0 0.8rem 0.5rem;
+    transition: bottom 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    &.expanded {
+        bottom: 100%;
+    }
+    button{
+        width: max-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.2rem;
+        margin: 0.2rem 0.5rem;
+        padding: 0;
+        cursor: pointer;
+        border: none;
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: black;
+        background: none;
+        .icon{
+            width: max-content;
+            font-size: 0.6rem;
+            color: inherit;
+        }
+        &:hover{
+            color: $accent-color;
+        }
+        &:focus{
+            color: $accent-color;
+        }
+    }
+     @media screen and (min-width: $breakpoint-sm) {
+        right: 2rem;
+    }
+}
+
+//border animation
+@keyframes rotate360 {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }

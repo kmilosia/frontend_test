@@ -1,0 +1,133 @@
+@import 'variables';
+@import 'radiobutton';
+
+main{
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    padding: 1rem 1rem;
+    background-color: $bg-main;
+    color: white;
+}
+//main website heading
+h1{
+    position: relative;
+    font-weight: 300;
+    //underline for the h1 heading
+    &::before{
+        position: absolute;
+        width: 80%;
+        height: 1px;
+        bottom: -10px;
+        left: 50%;
+        content: "";
+        background-color: white;
+        -webkit-transform: translateX(-50%) scaleX(1);
+        transform: translateX(-50%) scaleX(1);
+    }
+}
+//container for blocks inside main tag
+.block-grid{
+    width: 95%;
+    display: grid;
+    gap: 2rem;
+    padding: 2rem 1rem;
+    text-align: center;
+    //grid ajusted for 2 columns and last block taking 2 columns
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    section:nth-child(3) {
+        grid-column: 1 / span 2;
+    }
+    h2{
+        margin-bottom: 2rem;
+        font-size: 1rem;
+    }
+    @media screen and (min-width: $breakpoint-lg) {
+        //adjust grid for large screen as 3 columns
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+        section:nth-child(3) {
+            grid-column: auto;
+        }
+    }
+}
+//block with radio buttons
+.block-one{
+    h2{
+        text-align: start;
+        @media screen and (min-width: $breakpoint-lg) {
+            text-align: center;
+        }
+    }
+    //container with radio buttons adjusting position of its children
+    .radio-group-container{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
+    }
+}
+//block with buttons controlling text
+.block-two{
+    h2{
+        text-align: end;
+    }
+    //grid for buttons
+    div{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        button{
+            width: 100%;
+            margin: auto;
+            padding: 0.5rem 0;
+            background: none;
+            color: $text-accent;
+            border: 1px solid $text-accent;
+            border-radius: 0.2rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            &:hover{
+                color: white;
+                background-color: $accent-color;
+            }
+            &:focus{
+                border-color: white;
+            }
+        }
+        @media screen and (min-width: $breakpoint-sm) {
+            button{
+                width: 100%;
+            }
+        }
+        @media screen and (min-width: $breakpoint-lg) {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+    @media screen and (min-width: $breakpoint-lg) {
+        h2{
+            text-align: center;
+        }
+    }
+}
+//block with dynamic text
+.block-three{
+    //paragraphs which are displayed as one text with seperate tags
+    p{
+        display: inline;
+        overflow: hidden;
+        word-wrap: break-word; 
+        max-width: 100%;
+        margin: 0;
+        color: $text-accent;
+        font-weight: 300;
+    }
+    //heading with ellipsis when out of the container width
+    h2{
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+}

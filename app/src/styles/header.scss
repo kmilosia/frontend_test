@@ -1,0 +1,62 @@
+@import 'variables';
+//HEADER VARIABLES
+$bg-header: #0b0c10;
+$bg-logo: #303030;
+
+header{
+    z-index: 10;
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: $bg-header;
+    color: white;
+    @media screen and (min-width: $breakpoint-sm) {
+      padding: 1.2rem 2rem;
+    }
+    @media screen and (min-width: $breakpoint-lg) {
+      padding: 1rem 2rem;
+    }
+}
+.logo-link {
+    display: inline-block; 
+    width: 4rem;
+    height: 4rem; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: $bg-logo;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    span {
+      height: 100%; 
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 0.4rem;
+      color: white;
+      font-size: 3rem;
+    }
+    &:hover{
+        background-color: $accent-color;
+        span{
+            font-size: 3.2rem;
+        }
+    }
+  }
+.header-text{
+    display: flex;
+    flex-direction: column;
+    p{
+        margin: 0;
+        text-align: end;
+        font-weight: 200;
+        font-size: 1.2rem;
+      }
+  }
+ 
