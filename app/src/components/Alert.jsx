@@ -5,6 +5,7 @@ import { IoAlertCircle } from 'react-icons/io5';
 
 const Alert = ({id, message}) => {
     const removeAlert = useAlertStore((state) => state.removeAlert)
+    //setting timeout for single alert object to automatically disappear after 3 seconds
     useEffect(() => {
         const timeout = setTimeout(() => {
             removeAlert(id)

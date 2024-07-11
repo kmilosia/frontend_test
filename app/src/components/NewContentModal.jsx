@@ -5,14 +5,15 @@ const NewContentModal = ({setIsModal}) => {
     const {addContent} = useContentStore()
     const [content, setContent] = useState('')
     const [error, setError] = useState('')
+    //function for adding new object to the localstorage array, checking if the input is not empty
     const handleAddButton = () => {
         if (content.trim() === '') {
-            setError('Treść nie może być pusta!');
-            return;
+            setError('Treść nie może być pusta!')
+            return
         }
-        addContent(content);
-        setIsModal(false);
-    };
+        addContent(content)
+        setIsModal(false)
+    }
   return (
     <div className='modal'>
             <h3>Dodaj nową treść</h3>

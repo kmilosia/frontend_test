@@ -3,6 +3,7 @@ import {create} from 'zustand';
 const useAlertStore = create((set) => ({
   alerts: [],
   nextId: 1,
+  //adding alert to the stack of alerts
   addAlert: (message) => {
     set((state) => ({
       alerts: [...state.alerts, { id: state.nextId, message }],

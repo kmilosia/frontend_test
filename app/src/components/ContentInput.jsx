@@ -1,13 +1,21 @@
 import React, { useState } from 'react'
 import useContentStore from '../store/contentStore'
+import useBlocksStore from '../store/blocksStore'
 
 const ContentInput = ({item}) => {
     const {deleteContent, editContent} = useContentStore()
+    const {deleteFromTextContent} = useBlocksStore()
     const [isEdited, setIsEdited] = useState(false)
     const [editedValue, setEditedValue] = useState(item.content)
+    //edit button changes state so instead of text, input appears as well as button to save changes
     const handleEditButton = () => {
         editContent(item.position, editedValue)
         setIsEdited(false)
+    }
+    //delete position from localstorage/contentstore array as well as from textcontent array in block three if it exists there
+    const handleDeleteButton = () => {
+      deleteContent(item.position)
+      deleteFromTextContent(item.position)
     }
   return (
     <li>
@@ -19,7 +27,7 @@ const ContentInput = ({item}) => {
     <div className="actions-column">
         {isEdited ? <button type='button' onClick={handleEditButton}>Zapisz</button> :
         <button type='button' onClick={() => setIsEdited(true)}>Edytuj</button>}
-        <button type='button' onClick={() => deleteContent(item.position)}>Usuń</button>
+        <button type='button' onClick={handleDeleteButton}>Usuń</button>
     </div>
 </li>
   )
