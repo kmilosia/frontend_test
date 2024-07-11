@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import '../styles/footer.scss'
 import { FaChevronDown, FaChevronUp, FaChevronRight } from 'react-icons/fa'
 import useBlocksStore from '../store/blocksStore'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   const {showName, setShowName, resetState} = useBlocksStore()
@@ -9,8 +10,9 @@ const Footer = () => {
   return (
     <footer>
       <div className={`options-container ${expanded ? 'expanded' : ''}`}>
-        <button onClick={()=>resetState()}><FaChevronRight className='icon' /><span>ZRESETUJ USTAWIENIA</span></button>
-        <button onClick={() => setShowName(!showName)}><FaChevronRight className='icon' /><span>{showName ? 'SCHOWAJ' : 'POKAŻ'} DANE OSOBOWE</span></button>
+        <button className='expanded-footer-button' onClick={()=>resetState()}><FaChevronRight className='icon' /><span>ZRESETUJ USTAWIENIA</span></button>
+        <button className='expanded-footer-button' onClick={() => setShowName(!showName)}><FaChevronRight className='icon' /><span>{showName ? 'SCHOWAJ' : 'POKAŻ'} DANE OSOBOWE</span></button>
+        <Link to='/storage-management' className='expanded-footer-button'><FaChevronRight className='icon' /><span>ZARZĄDZAJ TREŚCIĄ</span></Link>
       </div>
       <div className='main-footer-content'>
         <div className='css-logo-container'>

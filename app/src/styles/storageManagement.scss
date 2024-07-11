@@ -1,0 +1,118 @@
+@import 'variables';
+
+.storage-wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 1rem;
+}
+.add-new-button{
+    position: static;
+    @media screen and (min-width: $breakpoint-lg) {
+        position: absolute;
+        top: 0;
+        right: 1rem;
+    }
+}
+button{
+    border:1px solid $text-accent;
+    background: none;
+    padding: 0.5rem 1rem;
+    color: white;
+    border-radius: 0.2rem;
+    transition: background-color 0.3s ease;
+    &:hover{
+        background-color: $accent-color;
+    }
+}
+
+ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 1rem 0;
+    width: 100%;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    @media screen and (min-width: $breakpoint-lg) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;    
+    }
+    li{
+        background-color: rgb(38, 37, 46);
+        border-radius: 0.2rem;
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        padding: 2rem;    
+        .content-column{
+            width: 100%;
+            p{
+                margin: 0;
+                word-break: break-all;
+                margin-right: 1rem;
+            }
+            textarea{
+                width: 90%;
+                resize: none;
+            }
+    
+        }
+        .actions-column{
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            width: 100%;
+            :nth-child(2){
+                &:hover{
+                    background-color: red;
+                }
+            }
+        }
+    }
+}
+  
+.modal{
+    z-index: 20;
+    width: 20rem;
+    height: max-content;
+    padding: 1rem 2rem;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: $bg-main;
+    border: 1px solid $text-light;
+    border-radius: 0.2rem;
+    gap:0.5rem;
+    h3{
+        font-weight: 400;
+        font-size: 1.2rem;
+        margin: 0.5rem;
+    }
+    .buttons{
+        margin-top: 1rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        :nth-child(1){
+            &:hover{
+                background-color: red;
+            }
+        }
+    }
+   
+    textarea{
+        width: 100%;
+        resize: none;
+        padding: 0.2rem 0.5rem;
+    }
+    .error{
+        margin-top: 0.4rem;
+        margin-bottom: 0;
+        font-size: 0.8rem;
+        color: red;
+    }
+}

@@ -128,7 +128,8 @@ footer{
     &.expanded {
         bottom: 100%;
     }
-    button{
+    .expanded-footer-button{
+        text-decoration: none;
         width: max-content;
         display: flex;
         align-items: center;

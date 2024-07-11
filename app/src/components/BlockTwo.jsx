@@ -1,10 +1,11 @@
 import React from 'react'
 import useAlertStore from '../store/alertStore';
 import useBlocksStore from '../store/blocksStore';
-import { pageText } from '../data/mockData';
+import useContentStore from '../store/contentStore';
 
 const BlockTwo = () => {
     const addAlert = useAlertStore((state) => state.addAlert)
+    const {contentArray} = useContentStore()
     const { selectedRadioButton, textContent, setTextContent } = useBlocksStore()
     //action for button that adds extra text to the content inside block three
     const handleAddButton = () => {
@@ -15,23 +16,38 @@ const BlockTwo = () => {
       }
         let contentObject = null
         if (selectedRadioButton === 'option-one') {
-          contentObject = pageText.find(item => item.id === 1)
+          contentObject = contentArray.find(item => item.position === 1)
+          //checks if array has option one and if not throws alert
+          if(!contentObject){
+            addAlert("Opcja pierwsza nie istnieje, przejdź do panelu zarządzania treścią aby dodać nową treść!")
+            return    
+          }
         } else if (selectedRadioButton === 'option-two') {
-          contentObject = pageText.find(item => item.id === 2)
+          //checks if array has option two and if not throws alert
+          contentObject = contentArray.find(item => item.position === 2)
+          if(!contentObject){
+            addAlert("Opcja pierwsza nie istnieje, przejdź do panelu zarządzania treścią aby dodać nową treść!")
+            return    
+          }
         }else if(selectedRadioButton === 'option-random'){
+          //checks if array has any option at all and if not throws alert
+          if(!contentArray.length){
+            addAlert("Tablica z treścią jest pusta,przejdź do panelu zarządzania treścią aby dodać nową treść!")
+            return    
+          }
           //checking for available objects inside the mock data which can be used to draw random number
-            const availableOptions = pageText.map(item => item.id).filter(id => !textContent.some(obj => obj.id === id))
+            const availableOptions = contentArray.map(item => item.position).filter(position => !textContent.some(obj => obj.position === position))
             //otherwise alert that all options were already taken
             if (availableOptions.length === 0) {
                 addAlert("Wszystkie możliwe opcje znajdują się już w bloku.");
                 return;
             }
-            //draw random number and find the object with that id inside the mock data
-            const randomId = availableOptions[Math.floor(Math.random() * availableOptions.length)]
-            contentObject = pageText.find(item => item.id === randomId)
+            //draw random number and find the object with that position inside the content array
+            const randomNumber = availableOptions[Math.floor(Math.random() * availableOptions.length)]
+            contentObject = contentArray.find(item => item.position === randomNumber)
         }
         //check if the chosen text with chosen id is already in the block three content
-        if (contentObject && !textContent.some(obj => obj.id === contentObject.id)) {
+        if (contentObject && !textContent.some(obj => obj.position === contentObject.position)) {
           //if no, update the array and add chosen object
             const newTextContent = [...textContent, contentObject]
             //sort alphabetically the array
@@ -52,13 +68,28 @@ const BlockTwo = () => {
         }
         let contentObject = null
         if (selectedRadioButton === 'option-one') {
-          contentObject = pageText.find(item => item.id === 1)
+          contentObject = contentArray.find(item => item.position === 1)
+          //checks if array has option one and if not throws alert
+          if(!contentObject){
+            addAlert("Opcja pierwsza nie istnieje, przejdź do panelu zarządzania treścią aby dodać nową treść!")
+            return    
+          }
         } else if (selectedRadioButton === 'option-two') {
-          contentObject = pageText.find(item => item.id === 2)
+          //checks if array has option two and if not throws alert
+          contentObject = contentArray.find(item => item.position === 2)
+          if(!contentObject){
+            addAlert("Opcja druga nie istnieje, przejdź do panelu zarządzania treścią aby dodać nową treść!")
+            return    
+          }
         } else if(selectedRadioButton === 'option-random'){
-          //draw random number according to the length of the array with mock data
-            const randomId = Math.floor(Math.random() * pageText.length) + 1
-            contentObject = pageText.find(item => item.id === randomId)
+          //checks if array has any option at all and if not throws alert
+          if(!contentArray.length){
+            addAlert("Tablica z treścią jest pusta,przejdź do panelu zarządzania treścią aby dodać nową treść!")
+            return    
+          }
+          //draw random number according to the length of the content array
+            const randomNumber = Math.floor(Math.random() * contentArray.length) + 1
+            contentObject = contentArray.find(item => item.position === randomNumber)
         }
         //update the array with text for block three
         setTextContent([contentObject])

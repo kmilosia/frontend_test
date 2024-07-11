@@ -6,13 +6,29 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Home from './routes/Home.jsx';
+import StorageManagement from './routes/StorageManagement.jsx';
+import Layout from './routes/Layout.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <Home />
+      <Layout />
     ),
+    children: [
+      {
+        path: "",
+        element: (
+          <Home />
+        )
+      },
+      {
+        path: "storage-management",
+        element: (
+          <StorageManagement />
+        )
+      }
+    ]
   },
 ]);
 
